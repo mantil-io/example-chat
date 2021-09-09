@@ -1,0 +1,42 @@
+.App {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+.user-prompt {
+  .user-input {
+    margin-top: 8px;
+    width: 100%;
+  }
+}
+.chat {
+  margin-top: 48px;
+  padding: 4px;
+  width: 224px;
+  .messages {
+    max-height: 300px;
+    overflow: auto;
+    .message {
+      padding: 6px 0;
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        .time {
+          font-size: 11px;
+          color: rgba(black, 0.6);
+        }
+        .user {
+          font-weight: bold;
+          font-size: 13px;
+        }
+      }
+      .content {
+        padding-top: 4px;
+      }
+    }
+  }
+  .input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
