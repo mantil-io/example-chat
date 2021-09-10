@@ -2,8 +2,8 @@
 package main
 
 import (
-	"github.com/djelusic/chat/api/chat"
 	"github.com/mantil-io/mantil.go"
+	"github.com/mantil-team/demo-chat/api/chat"
 )
 
 func main() {
