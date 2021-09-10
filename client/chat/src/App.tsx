@@ -64,9 +64,9 @@ function Messages({ messages }: MessagesProps) {
   const formatTime = (m: Message) => {
     const diff = differenceInCalendarDays(new Date(), new Date(m.createdAt));
     if (diff >= 1) {
-      return format(new Date(m.createdAt), 'M.d. H:m:ss');
+      return format(new Date(m.createdAt), 'M.d. H:mm:ss');
     } else {
-      return format(new Date(m.createdAt), 'H:m:ss');
+      return format(new Date(m.createdAt), 'H:mm:ss');
     }
   }
   return (
