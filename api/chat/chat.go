@@ -1,7 +1,6 @@
 package chat
 
 import (
-	"context"
 	"log"
 	"time"
 
@@ -19,9 +18,6 @@ type Message struct {
 	CreatedAt *time.Time `json:"createdAt"`
 }
 
-type DefaultRequest struct{}
-type DefaultResponse struct{}
-
 func New() *Chat {
 	messages, err := mantil.NewKV("messages")
 	if err != nil {
@@ -30,8 +26,4 @@ func New() *Chat {
 	return &Chat{
 		messages: messages,
 	}
-}
-
-func (c *Chat) Default(ctx context.Context, req *DefaultRequest) (*DefaultResponse, error) {
-	panic("not implemented")
 }
