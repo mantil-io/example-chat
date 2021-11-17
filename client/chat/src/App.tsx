@@ -27,6 +27,9 @@ function App() {
     api.request(requestUri('get'), null).then(rsp => {
       setMessages(rsp.messages);
     });
+    return () => {
+      api.close();
+    }
   }, []);
 
   const [username, setUsername] = useState<string>("");

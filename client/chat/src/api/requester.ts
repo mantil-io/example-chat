@@ -39,7 +39,9 @@ export default function createRequester(ws: WsApi) {
     }
 
     function close() {
-        // TODO
+        for (const r in requests) {
+            delete requests[r];
+        }
     }
 
     return {

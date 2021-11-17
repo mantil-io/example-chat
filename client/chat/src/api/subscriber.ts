@@ -34,7 +34,9 @@ export default function createSubscriber(ws: WsApi) {
     }
 
     function close() {
-        // TODO
+        for (const s in subs) {
+            unsubscribe(s);
+        }
     }
 
     return {
