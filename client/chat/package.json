@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "PUBLIC_URL='/main/public/chat' react-scripts build && cp -r build/ ../../public/chat",
+    "build": "PUBLIC_URL='/public/chat' react-scripts build && cp -r build/ ../../public/chat",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

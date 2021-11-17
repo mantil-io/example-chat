@@ -11,13 +11,13 @@ interface Message {
 }
 
 function requestUri(method: string) {
-  return `mantil-project-demo-chat-chat.${method}`;
+  return `chat.${method}`;
 }
 
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const api = useMemo(() => {
-    return createApi('wss://uaejc9t3ga.execute-api.eu-central-1.amazonaws.com/$default');
+    return createApi();
   }, []);
 
   useEffect(() => {

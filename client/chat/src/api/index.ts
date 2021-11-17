@@ -8,7 +8,13 @@ export interface ChatApi {
     close: () => void;
 }
 
-export default function createApi(url: string): ChatApi {
+export default function createApi(url?: string): ChatApi {
+    if (!url && mantilEnv) {
+        url = mantilEnv.endpoints.ws;
+    }
+    if (!url) {
+        throw('No WebSocket URL provided.')
+    }
     const ws = connect(url);
     const requester = createRequester(ws);
     const subscriber = createSubscriber(ws);
