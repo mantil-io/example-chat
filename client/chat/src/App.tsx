@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './App.scss';
-import createApi, { ChatApi } from './api';
+import { createWsApi } from '@mantil-io/mantil.js';
+import { WsApi } from '@mantil-io/mantil.js/dist/ws';
 import { format, differenceInCalendarDays } from 'date-fns';
 
 interface Message {
@@ -17,7 +18,7 @@ function requestUri(method: string) {
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const api = useMemo(() => {
-    return createApi();
+    return createWsApi();
   }, []);
 
   useEffect(() => {
@@ -27,9 +28,6 @@ function App() {
     api.request(requestUri('get'), null).then(rsp => {
       setMessages(rsp.messages);
     });
-    return () => {
-      api.close();
-    }
   }, []);
 
   const [username, setUsername] = useState<string>("");
@@ -91,7 +89,7 @@ function Messages({ messages }: MessagesProps) {
 }
 
 interface InputProps {
-  api: ChatApi;
+  api: WsApi;
   username: string;
 }
 
