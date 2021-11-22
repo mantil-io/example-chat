@@ -16,8 +16,7 @@ To deploy the project, run:
 mantil stage new development
 ```
 
-Since we set public as the default route in `config/environment.yml` the website
-will be available at the root URL for the stage which you can obtain by running:
+Now the project website will be available at the root URL for the stage which you can obtain by running:
 
 ```
 mantil env -u
