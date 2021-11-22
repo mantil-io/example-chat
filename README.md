@@ -39,20 +39,11 @@ start by deploying a new stage immediately.
 
 ## Using the WebSocket API
 
-Each Mantil API can be accessed via WebSocket which is useful for applications
-that need to update in real time. The WebSocket API can be used in two ways:
-1. Publish/Subscribe - A function can publish messages to a subject. Clients can
-   subscribe to this subject to receive new messages. An example of this can be
-   seen
-   [here](https://github.com/mantil-io/template-chat/blob/master/api/chat/add.go#L24).
-   After someone posts a new message it is published to all subscribers of the
-   `chat-messages` subject. An example of how clients can subscribe to topics
-   can be found
-   [here](https://github.com/mantil-io/template-chat/blob/master/client/chat/src/App.tsx#L24)
-2. Request/Response - This is used for synchronous communication and is
-   equivalent to calling the regular REST endpoint for the API. In this project
-   it is used to [fetch all previous
-   messages](https://github.com/mantil-io/template-chat/blob/master/client/chat/src/App.tsx#L27).
+For more information, see the [docs](https://github.com/mantil-io/docs/blob/main/api.md).
+
+In this example, we are using WebSocket pub/sub API to receive new messages on the client as soon as they are posted.
+
+On the backend, we use the mantil.go `Publish` function to [publish](https://github.com/mantil-io/template-chat/blob/master/api/chat/add.go#L24) new messages to the `chat-messages` subject. The client then uses the `mantil.js` SDK to [connect](https://github.com/mantil-io/template-chat/blob/master/client/chat/src/App.tsx#L21) to the WebSocket API and [subscribe](https://github.com/mantil-io/template-chat/blob/master/client/chat/src/App.tsx#L26) to new messages.
 
 ## Cleanup
 
