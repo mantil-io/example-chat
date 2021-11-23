@@ -3,6 +3,7 @@ import './App.scss';
 import { createWsApi } from '@mantil-io/mantil.js';
 import { WsApi } from '@mantil-io/mantil.js/dist/ws';
 import { format, differenceInCalendarDays } from 'date-fns';
+import classnames from 'classnames';
 
 interface Message {
   id: string;
@@ -18,7 +19,7 @@ function requestUri(method: string) {
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const api = useMemo(() => {
-    return createWsApi();
+    return createWsApi("wss://lfr14k0dni.execute-api.eu-central-1.amazonaws.com/$default");
   }, []);
 
   useEffect(() => {
@@ -34,16 +35,14 @@ function App() {
 
   return (
     <div className="App">
-      <div className="chat">
-        { username === "" ?
-          <UserPrompt setUsername={setUsername} />
-          :
-          <>
-            <Messages messages={messages} />
-            <Input api={api} username={username} />
-          </>
-        }
-      </div>
+      { username === "" ?
+        <UserPrompt setUsername={setUsername} />
+        :
+        <div className="chat">
+          <Messages messages={messages} />
+          <Input api={api} username={username} />
+        </div>
+      }
     </div>
   );
 }
@@ -95,9 +94,10 @@ interface InputProps {
 
 function Input({ api, username }: InputProps) {
   const [content, setContent] = useState<string>("");
-  const onEnter = useCallback((e: any) => {
-    if (e.key !== 'Enter') {
-      return
+
+  const sendMessage = useCallback(() => {
+    if (content.length === 0) {
+      return;
     }
     api.request(requestUri('add'), {
       message: {
@@ -106,6 +106,13 @@ function Input({ api, username }: InputProps) {
       },
     });
     setContent('');
+  }, [api, username, content]);
+
+  const onEnter = useCallback((e: any) => {
+    if (e.key !== 'Enter') {
+      return
+    }
+    sendMessage();
   }, [content, api]);
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -113,14 +120,20 @@ function Input({ api, username }: InputProps) {
     inputRef.current?.focus();
   }, []);
   return (
-    <input
-      ref={inputRef}
-      className="input"
-      type="text"
-      value={content}
-      onChange={e => setContent(e.target.value)}
-      onKeyDown={onEnter}
-    />
+    <div className="input-wrapper">
+      <input
+        ref={inputRef}
+        className="input"
+        type="text"
+        placeholder="Type a message..."
+        value={content}
+        onChange={e => setContent(e.target.value)}
+        onKeyDown={onEnter}
+      />
+      <i className={classnames('send-icon', 'fas', 'fa-paper-plane', {
+        disabled: content.length === 0,
+      })} onClick={sendMessage} />
+    </div>
   )
 }
 
@@ -138,14 +151,19 @@ function UserPrompt({ setUsername }: UserPromptProps) {
   }, [setUsername, userInput]);
   return (
     <div className="user-prompt">
-      Enter your username:
       <input
         className="user-input"
         type="text"
+        placeholder="Choose your username..."
         value={userInput}
         onChange={e => setUserInput(e.target.value)}
         onKeyPress={onEnter}
       />
+      <button className={classnames('enter-button', {
+        disabled: userInput.length === 0
+      })} onClick={() => setUsername(userInput)}>
+        Enter
+      </button>
     </div>
   )
 } 

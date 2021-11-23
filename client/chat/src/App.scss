@@ -1,42 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   display: flex;
   justify-content: center;
   font-size: 14px;
 }
 .user-prompt {
+  background-color: rgba(black, 0.05);
+  padding: 12px 24px;
+  border-radius: 16px;
+  margin-top: 96px;
   .user-input {
-    margin-top: 8px;
     width: 100%;
+    border: none;
+    outline: none;
+    width: 320px;
+    height: 40px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    padding: 0 20px;
+  }
+  .enter-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    border-radius: 16px;
+    cursor: pointer;
+    color: white;
+    background-color: #24a0ed;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    &.disabled {
+      background-color: rgba(black, 0.2);
+      cursor: unset;
+    }
   }
 }
 .chat {
   margin-top: 48px;
-  padding: 4px;
-  width: 224px;
+  padding: 12px;
+  width: 320px;
+  height: 500px;
+  box-shadow: rgba(black, 0.35) 0px 5px 15px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
   .messages {
-    max-height: 300px;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
     .message {
-      padding: 6px 0;
+      padding: 12px;
+      display: inline-block;
+	    margin-bottom: 10px;
+	    border-radius: 16px;
+      background-color: rgba(black, 0.05);
+      width: fit-content;
       .info-row {
         display: flex;
         justify-content: space-between;
-        .time {
-          font-size: 11px;
-          color: rgba(black, 0.6);
-        }
         .user {
           font-weight: bold;
           font-size: 13px;
         }
+        .time {
+          margin-left: 8px;
+          font-size: 11px;
+          color: rgba(black, 0.6);
+        }
       }
       .content {
+        display: inline-block;
         padding-top: 4px;
+        word-break: break-all;
       }
     }
   }
-  .input {
-    width: 100%;
-    box-sizing: border-box;
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    .input {
+      min-height: 40px;
+      width: 100%;
+      outline: none;
+      border: none;
+    }
+    .send-icon {
+      cursor: pointer;
+      font-size: 18px;
+      margin-right: 4px;
+      &.disabled {
+        color:rgba(black, 0.5);
+        cursor: unset;
+      }
+    }
   }
 }
