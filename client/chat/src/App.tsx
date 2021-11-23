@@ -19,7 +19,7 @@ function requestUri(method: string) {
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const api = useMemo(() => {
-    return createWsApi("wss://lfr14k0dni.execute-api.eu-central-1.amazonaws.com/$default");
+    return createWsApi();
   }, []);
 
   useEffect(() => {
