@@ -3,39 +3,24 @@
 This is a simple chat application which will demonstrate how to implement a
 WebSocket API in Mantil and use it with the provided JS SDK.
 
-## Getting started
+## Prerequisites
 
-To use this template, simply create a new Mantil project with the `--from=chat` flag:
+This template is created with Mantil. To download [Mantil CLI](https://github.com/mantil-io/mantil#installation) on Mac or Linux use Homebrew 
 ```
-mantil new chat-app --from=chat
-cd chat-app
+brew tap mantil-io/mantil
+brew install mantil
 ```
+or check [direct download links](https://github.com/mantil-io/mantil#installation).
 
-To deploy the project, run:
-```
-mantil stage new development
-```
+To deploy this application you will need an [AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 
-Now the project website will be available at the root URL for the stage which you can obtain by running:
+## Installation
 
+To locally create a new project from this template run:
 ```
-mantil env -u
+mantil new app --from chat
+cd app
 ```
-
-## Client
-
-The client code is located in `client/chat`, to build it run:
-
-```
-cd client/chat
-npm install
-npm run build
-```
-
-This will build the static assets and copy them over to the Mantil public
-folder. Note that this is optional and only needed if you want to modify the
-client code. The project already contains prebuilt assets in `public` so you can
-start by deploying a new stage immediately.
 
 ## Using the WebSocket API
 
@@ -45,12 +30,54 @@ In this example, we are using WebSocket pub/sub API to receive new messages on t
 
 On the backend, we use the mantil.go `Publish` function to [publish](https://github.com/mantil-io/template-chat/blob/master/api/chat/add.go#L24) new messages to the `chat-messages` subject. The client then uses the `mantil.js` SDK to [connect](https://github.com/mantil-io/template-chat/blob/master/client/chat/src/App.tsx#L21) to the WebSocket API and [subscribe](https://github.com/mantil-io/template-chat/blob/master/client/chat/src/App.tsx#L26) to new messages.
 
+## Deploying the application
+
+Note: If this is the first time you are using Mantil you will firstly need to install Mantil Node on your AWS account. For detailed instructions please follow these simple, one-step setup [instructions](https://github.com/mantil-io/mantil/blob/master/docs/getting_started.md#setup)
+```
+mantil aws install
+```
+After configuring the environment variable you can proceed with the creation of the first stage.
+```
+mantil stage new development
+```
+
+This command will create a new stage called `development` and deploy it to your node. 
+(After configuring the environment variable you can proceed with application deployment.
+```
+mantil deploy
+```
+
+This command will create a new stage for your project with default name `development` and deploy it to your node.)
+
+Now you can output the stage endpoint with `mantil env -u`. This is where the website for this project will be availabe. The API endpoints can be invoked by specifying the function and method name in the path, for example `$(mantil env -u)/chat/get`.
+
+## Modification
+
+If you want different behavior out of your function you can make necessary changes to your code the `api` folder.
+
+The client code is located in `client/chat`, to build it run:
+
+```
+cd client/chat
+npm install
+npm run build
+```
+
+This will build the static assets and copy them over to the Mantil public folder. Note that this is optional and only needed if you want to modify the client code. The project already contains prebuilt assets in `public` so you can start by deploying a new stage immediately.
+
+After each change you have to deploy your changes with `mantil deploy`, or instruct Mantil to  automatically deploy all saved changes with `mantil watch`.
+
+For more detailed instruction please refer to the [Mantil documentation](https://github.com/mantil-io/mantil#documentation).
+
 ## Cleanup
 
-To destroy the created stage, run:
+To remove the created stage from your AWS account destroy it with:
 ```
 mantil stage destroy development
 ```
 
-This will destroy all AWS resources associated with the project. Now you can
-safely delete the project folder.
+## Final thoughts
+
+With this template you learned how to create a simple serverless chat application with AWS Lambda and Mantil's WebSocket streaming implementation. Check out [our documentation](https://github.com/mantil-io/mantil#documentation) to find more interesting templates.
+
+If you have any questions or comments on this concrete template or would just like to share your view on Mantil contact us at [support@mantil.com](mailto:support@mantil.com) or create an issue.
