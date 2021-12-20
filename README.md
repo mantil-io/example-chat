@@ -1,15 +1,14 @@
 ## About
 
-This template shows how one can make a simple cloud native chat app with a serverless backend written in Go. Backend is built on AWS Lambda and uses WebSocket API and DynamoDB. 
+This example shows how one can make a simple cloud native chat app with a serverless backend written in Go. Backend is built on AWS Lambda and uses WebSocket API and DynamoDB. 
 
-This example will teach you:
+Through this example you will learn:
 - How to include a WebSocket API in Mantil and use it with the provided JS SDK
-- How to include DynamoDB table to your Mantil project using persistent key/value storage in Mantil APIs
 - How to deploy a web application on top of AWS Lambda with Mantil
 
 ## Prerequisites
 
-This template is created with Mantil. To download [Mantil CLI](https://github.com/mantil-io/mantil#installation) on Mac or Linux use Homebrew 
+This example is created with Mantil. To download [Mantil CLI](https://github.com/mantil-io/mantil#installation) on Mac or Linux use Homebrew 
 ```
 brew tap mantil-io/mantil
 brew install mantil
@@ -20,7 +19,7 @@ To deploy this application you will need an [AWS account](https://aws.amazon.com
 
 ## Installation
 
-To locally create a new project from this template run:
+To locally create a new project from this example run:
 ```
 mantil new app --from chat
 cd app
@@ -40,7 +39,7 @@ On the backend, we use the mantil.go `Publish` function to [publish](https://git
 
 ## Deploying the application
 
-Note: If this is the first time you are using Mantil you will firstly need to install Mantil Node on your AWS account. For detailed instructions please follow the [one-step setup](https://github.com/mantil-io/mantil/blob/master/docs/getting_started.md#setup)
+Note: If this is the first time you are using Mantil you will need to install Mantil Node on your AWS account. For detailed instructions please follow the [one-step setup](https://github.com/mantil-io/mantil/blob/master/docs/getting_started.md#setup)
 ```
 mantil aws install
 ```
@@ -79,6 +78,6 @@ mantil stage destroy development
 
 ## Final thoughts
 
-With this template you learned how to create a simple serverless chat application with AWS Lambda and Mantil's WebSocket streaming implementation. Check out [our documentation](https://github.com/mantil-io/mantil#documentation) to find more interesting templates.
+With this example you learned how to create a simple serverless chat application with AWS Lambda and Mantil's WebSocket streaming implementation. It also uses persistent key/value storage that you can learn more about in [todo example](https://github.com/mantil-io/example-todo). 
 
 If you have any questions or comments on this template or would just like to share your view on Mantil contact us at [support@mantil.com](mailto:support@mantil.com).
