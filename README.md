@@ -1,7 +1,11 @@
 ## About
 
-This is a simple chat application which will demonstrate how to implement a
-WebSocket API in Mantil and use it with the provided JS SDK.
+This template shows how one can make a simple cloud native chat app with a serverless backend written in Go. Backend is built on AWS Lambda and uses WebSocket API and DynamoDB. 
+
+This example will teach you:
+- How to include a WebSocket API in Mantil and use it with the provided JS SDK
+- How to include DynamoDB table to your Mantil project using persistent key/value storage in Mantil APIs
+- How to deploy a web application on top of AWS Lambda with Mantil
 
 ## Prerequisites
 
@@ -24,7 +28,11 @@ cd app
 
 ## Using the WebSocket API
 
-For more information, see the [docs](https://github.com/mantil-io/docs/blob/main/api.md).
+For applications that need to update in real time WebSocket is used. The WebSocket API can be used in two ways:
+- Publish/Subscribe - An API can publish messages to a subject. Clients can subscribe to this subject to receive new messages.
+- Request/Response - This is used for synchronous communication and is equivalent to calling the regular REST endpoint for the API.
+
+For more information, see the [docs](https://github.com/mantil-io/mantil/blob/master/docs/api.md#websocket).
 
 In this example, we are using WebSocket pub/sub API to receive new messages on the client as soon as they are posted.
 
@@ -32,7 +40,7 @@ On the backend, we use the mantil.go `Publish` function to [publish](https://git
 
 ## Deploying the application
 
-Note: If this is the first time you are using Mantil you will firstly need to install Mantil Node on your AWS account. For detailed instructions please follow these simple, one-step setup [instructions](https://github.com/mantil-io/mantil/blob/master/docs/getting_started.md#setup)
+Note: If this is the first time you are using Mantil you will firstly need to install Mantil Node on your AWS account. For detailed instructions please follow the [one-step setup](https://github.com/mantil-io/mantil/blob/master/docs/getting_started.md#setup)
 ```
 mantil aws install
 ```
@@ -40,13 +48,13 @@ Then you can proceed with application deployment.
 ```
 mantil deploy
 ```
-This command will create a new stage for your project and deploy it to your node.
+This command will create a new stage for your project with the default name `development` and deploy it to your node.
 
 Now you can output the stage endpoint with `mantil env -u`. This is where the website for this project will be availabe. The API endpoints can be invoked by specifying the function and method name in the path, for example `$(mantil env -u)/chat/get`.
 
 ## Modification
 
-If you want different behavior out of your function you can make necessary changes to your code the `api` folder.
+If you want different behavior out of your function you can make necessary changes to your code in the `api` folder.
 
 The client code is located in `client/chat`, to build it run:
 
@@ -73,4 +81,4 @@ mantil stage destroy development
 
 With this template you learned how to create a simple serverless chat application with AWS Lambda and Mantil's WebSocket streaming implementation. Check out [our documentation](https://github.com/mantil-io/mantil#documentation) to find more interesting templates.
 
-If you have any questions or comments on this concrete template or would just like to share your view on Mantil contact us at [support@mantil.com](mailto:support@mantil.com) or create an issue.
+If you have any questions or comments on this template or would just like to share your view on Mantil contact us at [support@mantil.com](mailto:support@mantil.com).
