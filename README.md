@@ -39,7 +39,7 @@ On the backend, we use the mantil.go `Publish` function to [publish](https://git
 
 ## Deploying the application
 
-Note: If this is the first time you are using Mantil you will need to install Mantil Node on your AWS account. For detailed instructions please follow the [one-step setup](https://github.com/mantil-io/mantil/blob/master/docs/getting_started.md#setup)
+Note: If this is the first time you are using Mantil you will need to install Mantil Node on your AWS account. For detailed instructions please follow the [one-step setup](https://github.com/mantil-io/mantil/blob/master/docs/aws_install.md)
 ```
 mantil aws install
 ```
@@ -67,7 +67,7 @@ This will build the static assets and copy them over to the Mantil public folder
 
 After each change you have to deploy your changes with `mantil deploy`, or instruct Mantil to  automatically deploy all saved changes with `mantil watch`.
 
-For more detailed instruction please refer to the [Mantil documentation](https://github.com/mantil-io/mantil#documentation).
+For more detailed instruction please refer to the [Mantil documentation](https://github.com/mantil-io/mantil/blob/master/docs/readme.md).
 
 ## Cleanup
 
