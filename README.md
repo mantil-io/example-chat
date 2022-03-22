@@ -1,4 +1,4 @@
-# Real-time serverless chat app on AWS example with Go and Mantil
+# Real-time serverless chat app on AWS with Go and Mantil
 
 [Mantil](https://github.com/mantil-io/mantil) is a modern open-source framework for writing serverless apps in Go. It allows you to quickly create and deploy applications that use AWS Lambda over a command line interface.
 
@@ -10,12 +10,12 @@ Through this example you will learn:
 
 ## Prerequisites
 
-This example is created with Mantil. To download [Mantil CLI](https://github.com/mantil-io/mantil/blob/master/docs/cli_install.md) on Mac or Linux use Homebrew 
+This example is created with Mantil. To download [Mantil CLI](https://docs.mantil.com/cli_install) on Mac or Linux use Homebrew 
 ```
 brew tap mantil-io/mantil
 brew install mantil
 ```
-or check [direct download links](https://github.com/mantil-io/mantil/blob/master/docs/cli_install.md#direct-download-linux-windows-and-mac).
+or check [direct download links](https://docs.mantil.com/cli_install#direct-download-linux-windows-and-mac).
 
 To deploy this application you will need an [AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 
@@ -33,7 +33,7 @@ For applications that need to update in real time WebSocket is used. The WebSock
 - Publish/Subscribe - An API can publish messages to a subject. Clients can subscribe to this subject to receive new messages.
 - Request/Response - This is used for synchronous communication and is equivalent to calling the regular REST endpoint for the API.
 
-For more information, see the [docs](https://github.com/mantil-io/mantil/blob/master/docs/api.md#websocket).
+For more information, see the [docs](https://docs.mantil.com/Usage/api#websocket).
 
 In this example, we are using WebSocket pub/sub API to receive new messages on the client as soon as they are posted.
 
@@ -47,7 +47,7 @@ For a slightly more complicated use case you can refer to the [todo](https://git
 
 ## Deploying the application
 
-Note: If this is the first time you are using Mantil you will need to install Mantil Node on your AWS account. For detailed instructions please follow the [setup guide](https://github.com/mantil-io/mantil/blob/master/docs/aws_install.md)
+Note: If this is the first time you are using Mantil you will need to install Mantil Node on your AWS account. For detailed instructions please follow the [setup guide](https://docs.mantil.com/aws_detailed_setup/aws_credentials)
 ```
 mantil aws install
 ```
@@ -75,7 +75,7 @@ This will build the static assets and copy them over to the Mantil public folder
 
 After each change you have to deploy your changes with `mantil deploy`, or instruct Mantil to  automatically deploy all saved changes with `mantil watch`.
 
-For more detailed instruction please refer to the [Mantil documentation](https://github.com/mantil-io/mantil/tree/master/docs#mantil-documentation).
+For more detailed instruction please refer to the [Mantil documentation](https://docs.mantil.com).
 
 ## Cleanup
 
